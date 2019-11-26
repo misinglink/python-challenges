@@ -22,9 +22,6 @@ with open(csv_path, 'r') as infile: # not sure on language for this one
         num = data[i][1]
         profit += int(num)
 
-#Mst answer average change greatest increase and greatest decrease then done :)
-#left off in min 21:46
-
 #attempt for average change
     total_diff = 0
     for i in range(1, len(data)):
@@ -33,7 +30,7 @@ with open(csv_path, 'r') as infile: # not sure on language for this one
         diff = num2 - num1
         total_diff += int(diff)
 
-#max/min
+#max/min findin 
     maxminlist = []
     for i in range(0, len(data)):
         num = int(data[i][1])
@@ -45,8 +42,15 @@ with open(csv_path, 'r') as infile: # not sure on language for this one
     maxindex = maxminlist.index(maxnum)
     minindex = maxminlist.index(minnum)
 
-print('Timeframe of analysis:  ' + str(months) + ' months')
-print('Total profit:  $' + str(profit))
-print('Average Change: $' + str(format(float(total_diff / 85), '.2f')))
-print('Greatest Increase in Profits: ' + str(data[maxindex][0]) + ' $' + str(maxnum))
-print('Greatest Decrease in Profits: ' + str(data[minindex][0]) + ' $' + str(minnum))
+#write results to file
+with open('Financial Analysis', 'r+') as out_file:
+    out_file.write('Timeframe of analysis:  ' + str(months) + ' months \n')
+    out_file.write('Total profit:  $' + str(profit) + '\n')
+    out_file.write('Average Change: $' + str(format(float(total_diff / 85), '.2f')) + '\n')
+    out_file.write('Greatest Increase in Profits: ' + str(data[maxindex][0]) +' $' + str(maxnum) + '\n')
+    out_file.write('Greatest Decrease in Profits: ' + str(data[minindex][0]) + ' $' + str(minnum) + '\n')
+
+#prints results in terminal :)
+    for line in out_file:
+        print(line)
+    out_file.close()
