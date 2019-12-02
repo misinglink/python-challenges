@@ -17,6 +17,8 @@ with open(csv_path, 'r') as infile: # not sure on language for this one
         months += 1
 
 #net profit
+#netamount = sum(int(row[1]) for row in datalist) # List comprehension vs "normal"
+
     profit = 0
     for i in range(0, len(data)):
         num = data[i][1]
@@ -25,9 +27,7 @@ with open(csv_path, 'r') as infile: # not sure on language for this one
 #attempt for average change
     total_diff = 0
     for i in range(1, len(data)):
-        num1 = int(data[i-1][1])
-        num2 = int(data[i][1])
-        diff = num2 - num1
+        diff = int(data[i][1]) - int(data[i-1][1])
         total_diff += int(diff)
 
 #max/min findin 
